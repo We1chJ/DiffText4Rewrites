@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Text Diff Tool</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/4.0.2/diff.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.1/purify.min.js"></script>
-    <script type="module" src="script.js"></script>
+    <title>Text Diff Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/diff2html@3.1.0/dist/diff2html.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/diff2html@3.1.0/dist/diff2html.min.css"
+    />
   </head>
   <body>
-    <label for="before">Before:</label><br>
-    <textarea id="before" rows="10" cols="50"></textarea><br>
-    <label for="after">After:</label><br>
-    <textarea id="after" rows="10" cols="50"></textarea><br>
-    <button onclick="displayDiff()">Display</button><br>
-    <label for="output">Output:</label><br>
-    <div id="output" class="markdown-output"></div>
+    <h1>Text Diff Viewer</h1>
+    <label for="before">Before:</label>
+    <br />
+    <textarea id="before" rows="10" cols="50"></textarea>
+    <br />
+    <label for="after">After:</label>
+    <br />
+    <textarea id="after" rows="10" cols="50"></textarea>
+    <br />
+    <button onclick="showDiff()">Display</button>
+    <hr />
+    <div id="diff"></div>
+
+    <script>
+      function showDiff() {
+        var before = document.getElementById("before").value;
+        var after = document.getElementById("after").value;
+
+        var diffHtml = Diff2Html.html(
+          Diff2Html.diff(before, after, { outputFormat: "side-by-side" })
+        );
+        document.getElementById("diff").innerHTML = diffHtml;
+      }
+    </script>
   </body>
 </html>
