@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Text Diff Viewer</title>
-    <script src="https://cdn.jsdelivr.net/npm/diff2html@3.1.0/dist/diff2html.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/diff2html@3.1.0/dist/diff2html.min.css"
-    />
-  </head>
-  <body>
-    <h1>Text Diff Viewer</h1>
+<head>
+    <title>Text Difference</title>
+    <script src="https://cdn.jsdelivr.net/npm/diff2html@3.4.35/+esm"></script>
+</head>
+<body>
+    <h1>Text Difference</h1>
     <label for="before">Before:</label>
-    <br />
-    <textarea id="before" rows="10" cols="50"></textarea>
-    <br />
+    <br>
+    <textarea id="before" name="before" rows="10" cols="50"></textarea>
+    <br>
     <label for="after">After:</label>
-    <br />
-    <textarea id="after" rows="10" cols="50"></textarea>
-    <br />
-    <button onclick="showDiff()">Display</button>
-    <hr />
-    <div id="diff"></div>
-
+    <br>
+    <textarea id="after" name="after" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="displayDiff()">Display Diff</button>
+    <br>
+    <div id="diff-output"></div>
     <script>
-      function showDiff() {
-        var before = document.getElementById("before").value;
-        var after = document.getElementById("after").value;
-
-        var diffHtml = Diff2Html.html(
-          Diff2Html.diff(before, after, { outputFormat: "side-by-side" })
-        );
-        document.getElementById("diff").innerHTML = diffHtml;
-      }
+        function displayDiff() {
+            const beforeText = document.getElementById("before").value;
+            const afterText = document.getElementById("after").value;
+            const diff = Diff2Html.getDiff(beforeText, afterText, {
+                inputFormat: 'text',
+                showFiles: false,
+                matching: 'lines',
+                outputFormat: 'side-by-side',
+                diffStyle: {
+                    'word-added': {
+                        'background-color': 'rgba(76, 175, 80, 0.2)',
+                        'color': 'rgb(76, 175, 80)',
+                        'font-style': 'italic'
+                    },
+                    'word-removed': {
+                        'background-color': 'rgba(244, 67, 54, 0.2)',
+                        'color': 'rgb(244, 67, 54)',
+                        'text-decoration': 'line-through'
+                    }
+                }
+            });
+            const targetDiv = document.getElementById("diff-output");
+            targetDiv.innerHTML = diff;
+            Diff2Html.highlightCode(targetDiv);
+        }
     </script>
-  </body>
+</body>
 </html>
