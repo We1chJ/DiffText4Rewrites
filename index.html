@@ -1,48 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Text Difference</title>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/diff2html@3.4.35/+esm"></script>
-</head>
-<body>
-    <h1>Text Difference</h1>
-    <label for="before">Before:</label>
-    <br>
-    <textarea id="before" name="before" rows="10" cols="50"></textarea>
-    <br>
-    <label for="after">After:</label>
-    <br>
-    <textarea id="after" name="after" rows="10" cols="50"></textarea>
-    <br>
-    <button onclick="displayDiff()">Display Diff</button>
-    <br>
-    <div id="diff-output"></div>
-    <script>
-        function displayDiff() {
-            const beforeText = document.getElementById("before").value;
-            const afterText = document.getElementById("after").value;
-            const diff = Diff2Html.getDiff(beforeText, afterText, {
-                inputFormat: 'text',
-                showFiles: false,
-                matching: 'lines',
-                outputFormat: 'side-by-side',
-                diffStyle: {
-                    'word-added': {
-                        'background-color': 'rgba(76, 175, 80, 0.2)',
-                        'color': 'rgb(76, 175, 80)',
-                        'font-style': 'italic'
-                    },
-                    'word-removed': {
-                        'background-color': 'rgba(244, 67, 54, 0.2)',
-                        'color': 'rgb(244, 67, 54)',
-                        'text-decoration': 'line-through'
-                    }
-                }
-            });
-            const targetDiv = document.getElementById("diff-output");
-            targetDiv.innerHTML = diff;
-            Diff2Html.highlightCode(targetDiv);
-        }
-    </script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Text Diff Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/4.0.2/diff.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.1/purify.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <label for="before">Before:</label><br>
+    <textarea id="before" rows="10" cols="50"></textarea><br>
+    <label for="after">After:</label><br>
+    <textarea id="after" rows="10" cols="50"></textarea><br>
+    <button onclick="displayDiff()">Display</button><br>
+    <label for="output">Output:</label><br>
+    <textarea id="output" rows="10" cols="50"></textarea>
+  </body>
 </html>
