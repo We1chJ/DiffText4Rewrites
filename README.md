@@ -7,8 +7,8 @@
 4. Click on "Copy to Clipboard" button to copy the generated text with correct formatting
 5. Paste it into your Google Doc for the rewrites!
 
-![image](img\demo.png)
-
+<!-- ![image](img\demo.png) -->
+![Alt text](img\demo.png?raw=true)
 ## Troubleshooting/Warnings😢
 > Feel free to email me when you have any issues with the text generated: weq511762338@gmail.com
 - Any new lines and indentations will not be detected and compared. So only using it on each individual paragraphs will yield the best results.
