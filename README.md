@@ -7,6 +7,7 @@
 4. Click on "Copy to Clipboard" button to copy the generated text with correct formatting
 5. Paste it into your Google Doc for the rewrites!
 
+![image](img\demo.png)
 
 ## Troubleshooting/Warnings😢
 > Feel free to email me when you have any issues with the text generated: weq511762338@gmail.com
